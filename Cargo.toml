@@ -1,0 +1,25 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/switchboard-core",
+    "crates/switchboard-server",
+    "crates/switchboard-adapters/klondike-adapters/klondike-channels",
+    "crates/switchboard-adapters/klondike-adapters/klondike-issues",
+    "crates/switchboard-adapters/klondike-adapters/klondike-artifacts",
+    "crates/switchboard-adapters/slack-adapters/slack-channels",
+    "crates/switchboard-adapters/github-adapters/github-issues",
+    "crates/switchboard-adapters/jira-adapters/jira-issues",
+    "crates/switchboard-adapters/discord-adapters/discord-channels",
+    "crates/switchboard-adapters/sharepoint-adapters/sharepoint-artifacts",
+]
+
+[workspace.dependencies]
+switchboard-core = { path = "crates/switchboard-core" }
+async-trait = "0.1"
+thiserror = "2"
+serde = { version = "1", features = ["derive"] }
+uuid = { version = "1", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+reqwest = { version = "0.12", features = ["json"] }
+tokio = { version = "1", features = ["full"] }
+axum = "0.8"

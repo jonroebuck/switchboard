@@ -1,0 +1,15 @@
+[package]
+name = "switchboard-server"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+switchboard-core = { workspace = true }
+klondike-channels = { path = "../switchboard-adapters/klondike-adapters/klondike-channels" }
+klondike-issues = { path = "../switchboard-adapters/klondike-adapters/klondike-issues" }
+klondike-artifacts = { path = "../switchboard-adapters/klondike-adapters/klondike-artifacts" }
+axum = { workspace = true }
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = "1"
+uuid = { workspace = true }
