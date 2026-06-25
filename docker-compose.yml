@@ -1,7 +1,16 @@
 services:
+  klondike:
+    image: ghcr.io/yourusername/klondike:latest
+    volumes:
+      - klondike-data:/data
   switchboard:
-    build: .
+    image: ghcr.io/yourusername/switchboard:latest
     ports:
       - "8080:8080"
     environment:
       KLONDIKE_URL: http://klondike:3000
+    depends_on:
+      - klondike
+
+volumes:
+  klondike-data:
