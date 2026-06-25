@@ -11,6 +11,7 @@ members = [
     "crates/switchboard-adapters/jira-adapters/jira-issues",
     "crates/switchboard-adapters/discord-adapters/discord-channels",
     "crates/switchboard-adapters/sharepoint-adapters/sharepoint-artifacts",
+    "crates/switchboard-cli",
 ]
 
 [workspace.dependencies]

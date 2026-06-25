@@ -18,6 +18,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: dtolnay/rust-toolchain@stable
+
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Build CLI
+        run: cargo build --release -p switchboard-cli
+
+      - name: Run switchboard up (CI mode)
+        run: ./target/release/switchboard up
+        env:
+          CI: true
+          SWITCHBOARD_PORT: 3000
+          KLONDIKE_URL: ${{ secrets.KLONDIKE_URL }}
+          SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}

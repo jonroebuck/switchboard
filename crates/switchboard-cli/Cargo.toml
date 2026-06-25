@@ -1,0 +1,16 @@
+[package]
+name = "switchboard-cli"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "switchboard"
+path = "src/main.rs"
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+config = { version = "0.15", features = ["toml"] }
+dialoguer = "0.11"
+serde = { workspace = true }
+toml = "0.8"
+atty = "0.2"
