@@ -1,8 +1,7 @@
-mod routes;
-
 use std::sync::Arc;
 
 use axum::Router;
+use switchboard_server::routes;
 use tokio::net::TcpListener;
 
 #[tokio::main]
