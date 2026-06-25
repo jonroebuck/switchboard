@@ -6,7 +6,7 @@ services:
   switchboard:
     image: ghcr.io/yourusername/switchboard:latest
     ports:
-      - "8080:8080"
+      - "4080:4080"
     environment:
       KLONDIKE_URL: http://klondike:3000
     depends_on:

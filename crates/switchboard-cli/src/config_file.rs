@@ -16,7 +16,7 @@ pub struct SwitchboardConfig {
 pub fn prompt_config() -> Result<SwitchboardConfig, String> {
     let port: u16 = Input::new()
         .with_prompt("Port")
-        .default(8080)
+        .default(4080)
         .interact_text()
         .map_err(|e| e.to_string())?;
 
@@ -77,7 +77,7 @@ pub fn load_resolved_config() -> Result<SwitchboardConfig, String> {
             config::Environment::default()
                 .try_parsing(true),
         )
-        .set_default("port", 8080)
+        .set_default("port", 4080)
         .map_err(|e| e.to_string())?
         .set_default("klondike_url", "http://localhost:3000")
         .map_err(|e| e.to_string())?
@@ -85,7 +85,7 @@ pub fn load_resolved_config() -> Result<SwitchboardConfig, String> {
         .map_err(|e| e.to_string())?;
 
     Ok(SwitchboardConfig {
-        port: settings.get::<u16>("port").unwrap_or(8080),
+        port: settings.get::<u16>("port").unwrap_or(4080),
         klondike_url: settings
             .get::<String>("klondike_url")
             .unwrap_or_else(|_| "http://localhost:3000".into()),
