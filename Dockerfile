@@ -12,5 +12,5 @@ RUN apt-get update && apt-get install -y ca-certificates libssl3 && rm -rf /var/
 
 COPY --from=builder /app/target/release/switchboard-server /usr/local/bin/switchboard-server
 
-EXPOSE 8080
+EXPOSE 4080
 CMD ["switchboard-server"]

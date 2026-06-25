@@ -21,7 +21,7 @@ async fn main() {
             .merge(routes::artifacts::router(artifact_store)),
     );
 
-    let listener = TcpListener::bind("0.0.0.0:8080").await.unwrap();
-    println!("switchboard listening on 0.0.0.0:8080");
+    let listener = TcpListener::bind("0.0.0.0:4080").await.unwrap();
+    println!("switchboard listening on 0.0.0.0:4080");
     axum::serve(listener, app).await.unwrap();
 }
