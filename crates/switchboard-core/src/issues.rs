@@ -3,6 +3,8 @@ use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
+use crate::schema::CreateSchema;
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Issue {
     pub id: Uuid,
@@ -34,6 +36,14 @@ pub enum IssueError {
 
 #[async_trait]
 pub trait IssueStore: Send + Sync {
+    fn create_issue_schema(&self) -> CreateSchema {
+        CreateSchema {
+            resource: "issues".to_string(),
+            required: vec!["title".to_string(), "description".to_string()],
+            optional: vec![],
+        }
+    }
+
     async fn list_issues(&self) -> Result<Vec<Issue>, IssueError>;
     async fn get_issue(&self, id: Uuid) -> Result<Issue, IssueError>;
     async fn create_issue(&self, title: String, description: String) -> Result<Issue, IssueError>;

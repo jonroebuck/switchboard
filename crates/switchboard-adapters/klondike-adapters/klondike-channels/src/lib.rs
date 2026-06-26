@@ -110,3 +110,18 @@ impl ChannelStore for KlondikeChannelStore {
             .map_err(|e| ChannelError::Internal(e.to_string()))
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use switchboard_core::channels::ChannelStore;
+
+    #[test]
+    fn test_create_channel_schema() {
+        let store = KlondikeChannelStore::new("http://localhost:3000");
+        let schema = store.create_channel_schema();
+        assert_eq!(schema.resource, "channels");
+        assert_eq!(schema.required, vec!["name", "description"]);
+        assert!(schema.optional.is_empty());
+    }
+}

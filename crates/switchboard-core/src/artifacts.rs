@@ -3,6 +3,8 @@ use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
+use crate::schema::CreateSchema;
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Artifact {
     pub id: Uuid,
@@ -24,6 +26,20 @@ pub enum ArtifactError {
 
 #[async_trait]
 pub trait ArtifactStore: Send + Sync {
+    fn create_artifact_schema(&self) -> CreateSchema {
+        CreateSchema {
+            resource: "artifacts".to_string(),
+            required: vec![
+                "name".to_string(),
+                "version".to_string(),
+                "source_type".to_string(),
+                "source_location".to_string(),
+                "content_type".to_string(),
+            ],
+            optional: vec![],
+        }
+    }
+
     async fn list_artifacts(&self) -> Result<Vec<Artifact>, ArtifactError>;
     async fn get_artifact(&self, id: Uuid) -> Result<Artifact, ArtifactError>;
     async fn create_artifact(

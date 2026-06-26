@@ -76,3 +76,18 @@ impl IssueStore for KlondikeIssueStore {
             .map_err(|e| IssueError::Internal(e.to_string()))
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use switchboard_core::issues::IssueStore;
+
+    #[test]
+    fn test_create_issue_schema() {
+        let store = KlondikeIssueStore::new("http://localhost:3000");
+        let schema = store.create_issue_schema();
+        assert_eq!(schema.resource, "issues");
+        assert_eq!(schema.required, vec!["title", "description"]);
+        assert!(schema.optional.is_empty());
+    }
+}

@@ -66,3 +66,21 @@ impl ArtifactStore for KlondikeArtifactStore {
             .map_err(|e| ArtifactError::Internal(e.to_string()))
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use switchboard_core::artifacts::ArtifactStore;
+
+    #[test]
+    fn test_create_artifact_schema() {
+        let store = KlondikeArtifactStore::new("http://localhost:3000");
+        let schema = store.create_artifact_schema();
+        assert_eq!(schema.resource, "artifacts");
+        assert_eq!(
+            schema.required,
+            vec!["name", "version", "source_type", "source_location", "content_type"]
+        );
+        assert!(schema.optional.is_empty());
+    }
+}

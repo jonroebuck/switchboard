@@ -3,6 +3,8 @@ use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
+use crate::schema::CreateSchema;
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Channel {
     pub id: Uuid,
@@ -39,6 +41,14 @@ pub enum ChannelError {
 
 #[async_trait]
 pub trait ChannelStore: Send + Sync {
+    fn create_channel_schema(&self) -> CreateSchema {
+        CreateSchema {
+            resource: "channels".to_string(),
+            required: vec!["name".to_string(), "description".to_string()],
+            optional: vec![],
+        }
+    }
+
     async fn list_channels(&self) -> Result<Vec<Channel>, ChannelError>;
     async fn get_channel(&self, id: Uuid) -> Result<Channel, ChannelError>;
     async fn create_channel(&self, name: String, description: String) -> Result<Channel, ChannelError>;
