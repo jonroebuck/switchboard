@@ -1842,6 +1842,7 @@ dependencies = [
  "tokio",
  "tower",
  "uuid",
+ "wiremock",
 ]
 
 [[package]]
