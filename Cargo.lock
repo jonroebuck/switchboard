@@ -1082,7 +1082,7 @@ dependencies = [
 
 [[package]]
 name = "klondike-channels"
-version = "0.1.0"
+version = "0.1.7"
 dependencies = [
  "async-trait",
  "chrono",
@@ -1827,7 +1827,7 @@ dependencies = [
 
 [[package]]
 name = "switchboard-server"
-version = "0.1.0"
+version = "0.1.7"
 dependencies = [
  "async-trait",
  "axum",
